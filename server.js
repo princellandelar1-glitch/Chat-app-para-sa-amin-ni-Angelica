@@ -1,4 +1,3 @@
-
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -11,6 +10,11 @@ const io = new Server(server);
 // I-set ang public folder para basahin ang index.html at style.css
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+// Ruta para sa homepage (Para gumana ang index.html sa Render)
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Dito natin ilalagay ang tamang username at password ninyong dalawa
 const COUPLES = {
